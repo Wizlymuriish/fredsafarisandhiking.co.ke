@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fred Safaris & Hiking Adventures</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #38d100;
+            --primary-dark: #2e5231;
+            --secondary: #8C6D46;
+            --secondary-dark: #7A5B38;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --beige: #F5F5DC;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--beige);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--secondary-dark);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        /* Page Styles */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Homepage */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('safaricars.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            height: 300px;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .gallery-caption h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gallery-caption p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Safari Experiences Section */
+        .safari-experiences {
+            background: var(--white);
+        }
+        
+        .experience-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .experience-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .experience-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .experience-card:hover .experience-img img {
+            transform: scale(1.1);
+        }
+        
+        .experience-content {
+            padding: 25px;
+        }
+        
+        .experience-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .experience-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .experience-details {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .detail {
+            background: var(--beige);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .experience-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .experience-actions .btn {
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+        }
+        
+        /* Hiking Experiences Section */
+        .hiking-experiences {
+            background: var(--beige);
+        }
+        
+        .hiking-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .hiking-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hiking-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .hiking-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .hiking-card:hover .hiking-img img {
+            transform: scale(1.1);
+        }
+        
+        .hiking-content {
+            padding: 25px;
+        }
+        
+        .hiking-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hiking-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .hiking-details {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .hiking-detail {
+            background: var(--beige);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .hiking-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .hiking-actions .btn {
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--white);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        .contact-details {
+            margin-bottom: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 24px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .contact-text p, .contact-text a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+        
+        .contact-text a:hover {
+            color: var(--primary);
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+        }
+        
+        .opening-hours {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .opening-hours h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Booking Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .modal h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .modal p {
+            margin-bottom: 25px;
+            color: var(--gray);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+        
+        .booking-summary {
+            background: var(--beige);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .booking-summary h4 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .booking-total {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+        
+        .whatsapp-redirect {
+            background: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .whatsapp-redirect i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        
+        .footer-col p {
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+            font-size: 18px;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin: 15px 0;
+        }
+        
+        .footer-links li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 17px;
+        }
+        
+        .footer-links li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+            font-size: 16px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                padding: 30px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-card,
+            .hiking-card {
+                height: auto;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+            .contact-info h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-hiking"></i>
+                FRED SAFARIS & HIKING
+            </a>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="gallery">Gallery</a></li>
+                    <li><a href="#" class="nav-link" data-page="safaris">Safaris</a></li>
+                    <li><a href="#" class="nav-link" data-page="hiking">Hiking</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div class="page active" id="home">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover the Wild Beauty of Nature</h1>
+                <p>Experience unforgettable wildlife safaris and breathtaking hiking adventures in some of the world's most stunning natural environments.</p>
+                <div class="hero-btns">
+                    
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-title">
+                    <h2>Why Choose Us?</h2>
+                    <p>We offer unique experiences that connect you with nature while ensuring your safety and comfort</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Expert Guides</h3>
+                        <p>Our experienced guides know the best spots for wildlife viewing and safe hiking trails.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <h3>Unique Locations</h3>
+                        <p>Access remote areas and hidden gems that only local experts can find.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Sustainable Tourism</h3>
+                        <p>We prioritize conservation and responsible tourism practices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Gallery Page -->
+    <div class="page" id="gallery">
+        <section>
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Wildlife & Adventure Gallery</h2>
+                    <p>Capturing the beauty of nature and the thrill of adventure</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item">
+                        <img src="elephant.jpg" alt="African Elephant">
+                        <div class="gallery-caption">
+                            <h3>African Elephant</h3>
+                            <p>Serengeti National Park, Tanzania</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item">
+                        <img src="cheetah.jpg" alt="cheetah">
+                        <div class="gallery-caption">
+                            <h3>Cheetah</h3>
+                            <p>Maasai Mara National Park,Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item">
+                        <img src="antelope.jpg" alt="Antelope">
+                        <div class="gallery-caption">
+                            <h3>Antelope</h3>
+                            <p>Serengeti National Park,Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-item">
+                        <img src="eagle.jpg" alt="Eagle">
+                        <div class="gallery-caption">
+                            <h3>Harpy Eagle</h3>
+                            <p>Tsavo National Park,Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-item">
+                        <img src="flamingo.jpg" alt="Flamingo">
+                        <div class="gallery-caption">
+                            <h3>Flamingo</h3>
+                            <p>Lake Nakuru,Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-item">
+                        <img src="lion.jpg" alt="Lion">
+                        <div class="gallery-caption">
+                            <h3>Lion</h3>
+                            <p>Maasai Mara National Park,Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 7 -->
+                    <div class="gallery-item">
+                        <img src="monkey.jpg" alt="Monkey">
+                        <div class="gallery-caption">
+                            <h3>Monkey</h3>
+                            <p>Mt.Kenya National Park,Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 8 -->
+                    <div class="gallery-item">
+                        <img src="wildebeast.jpg" alt="Wildebeast">
+                        <div class="gallery-caption">
+                            <h3>Wildebeast</h3>
+                            <p>Maasai Mara National Park,Kenya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Safaris Page -->
+    <div class="page" id="safaris">
+        <section>
+            <div class="container">
+                <div class="section-title">
+                    <h2>Fred Safari Experiences</h2>
+                    <p>Join us on an unforgettable journey to witness wildlife in their natural habitats</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <!-- Safari Experience 1 -->
+                    <div class="experience-card">
+                        <div class="experience-img">
+                            <img src="safaricars.jpg" alt="Safari Experience 1">
+                        </div>
+                        <div class="experience-content">
+                            <h3>Classic African Safari</h3>
+                            <p>Embark on a 7-day safari through the Serengeti and Maasai Mara, witnessing the Great Migration and encountering the Big Five.</p>
+                            <div class="experience-details">
+                                <span class="detail">7 Days</span>
+                                <span class="detail"> KES 285,000 </span>
+                                <span class="detail">Group Size: 6-12</span>
+                            </div>
+                            <div class="experience-actions">
+                                <button class="btn book-now" data-safari="classic-african">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Safari Experience 2 -->
+                    <div class="experience-card">
+                        <div class="experience-img">
+                            <img src="maasai.jpg" alt="Safari Experience 2">
+                        </div>
+                        <div class="experience-content">
+                            <h3>Meet The Maasai Culture in Maasai Mara National Park</h3>
+                            <p>Combine wildlife viewing with exchanging of cultures from the Maasai who neighbour the Park</p>
+                            <div class="experience-details">
+                                <span class="detail">10 Days</span>
+                                <span class="detail"> KES 250,200</span>
+                                <span class="detail">Group Size: 4-8</span>
+                            </div>
+                            <div class="experience-actions">
+                                <button class="btn book-now" data-safari="mountain-trekking">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Safari Experience 3 -->
+                    <div class="experience-card">
+                        <div class="experience-img">
+                            <img src="mountaintrek.jpg" alt="Mountain Trek">
+                        </div>
+                        <div class="experience-content">
+                            <h3>Mountain Trek Safari</h3>
+                            <p>Explore the Mt.Kenya rainforest with expert guides, spotting exotic wildlife and learning about indigenous cultures.</p>
+                            <div class="experience-details">
+                                <span class="detail">14 Days</span>
+                                <span class="detail"> KES 300,000</span>
+                                <span class="detail">Group Size: 6-10</span>
+                            </div>
+                            <div class="experience-actions">
+                                <button class="btn book-now" data-safari="jungle-adventure">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Safari Experience 4 -->
+                    <div class="experience-card">
+                        <div class="experience-img">
+                            <img src="serengeti.jpg" alt="Safari Experience 4">
+                        </div>
+                        <div class="experience-content">
+                            <h3>The Serengeti Experience</h3>
+                            <p>Discover the good and magnificent views of the Serengeti National Park with friends.</p>
+                            <div class="experience-details">
+                                <span class="detail">5 Days</span>
+                                <span class="detail"> KES 176,800</span>
+                                <span class="detail">Group Size: 8-15</span>
+                            </div>
+                            <div class="experience-actions">
+                                <button class="btn book-now" data-safari="marine-wildlife">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Hiking Page -->
+    <div class="page" id="hiking">
+        <section>
+            <div class="container">
+                <div class="section-title">
+                    <h2>Hiking Adventures</h2>
+                    <p>Challenge yourself with our curated hiking experiences through some of the world's most beautiful landscapes</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <!-- Hiking Experience 1 -->
+                    <div class="hiking-card">
+                        <div class="hiking-img">
+                            <img src="camp.jpg" alt="Hiking Experience 1">
+                        </div>
+                        <div class="hiking-content">
+                            <h3>Camping</h3>
+                            <p>The serenity of Mount Kenya where you are provided with camping sites safe for you and your family or friends.</p>
+                            <div class="hiking-details">
+                                <span class="hiking-detail">5 Days</span>
+                                <span class="hiking-detail"> KES 10,200</span>
+                                <span class="hiking-detail">Difficulty: Moderate</span>
+                            </div>
+                            <div class="hiking-actions">
+                                <button class="btn book-now" data-hiking="rocky-mountain">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hiking Experience 2 -->
+                    <div class="hiking-card">
+                        <div class="hiking-img">
+                            <img src="hikebag.jpg" alt="Hiking Experience 2">
+                        </div>
+                        <div class="hiking-content">
+                            <h3>Hiking Experiences</h3>
+                            <p>Walk along dramatic birds chirping, spotting antelopes and zebras along the way.</p>
+                            <div class="hiking-details">
+                                <span class="hiking-detail">3 Days</span>
+                                <span class="hiking-detail"> KES 16,800</span>
+                                <span class="hiking-detail">Difficulty: Easy</span>
+                            </div>
+                            <div class="hiking-actions">
+                                <button class="btn book-now" data-hiking="coastal-cliffs">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hiking Experience 3 -->
+                    <div class="hiking-card">
+                        <div class="hiking-img">
+                            <img src="hiking.jpg" alt="Hiking Experience 3">
+                        </div>
+                        <div class="hiking-content">
+                            <h3>Mt. Kenya trek</h3>
+                            <p>Explore the 23km walk from the Sirimon entrance Old Moses camp to Shiptons Camp site.</p>
+                            <div class="hiking-details">
+                                <span class="hiking-detail">7 Days</span>
+                                <span class="hiking-detail"> KES 23,500</span>
+                                <span class="hiking-detail">Difficulty: Challenging</span>
+                            </div>
+                            <div class="hiking-actions">
+                                <button class="btn book-now" data-hiking="volcanic-landscape">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hiking Experience 4 -->
+                    <div class="hiking-card">
+                        <div class="hiking-img">
+                            <img src="climbers.jpg" alt="Hiking Experience 4">
+                        </div>
+                        <div class="hiking-content">
+                            <h3>Tropical Jungle Trek</h3>
+                            <p>Immerse yourself in the lush tropical jungles of Mt.Elgon, discovering exotic flora and fauna.</p>
+                            <div class="hiking-details">
+                                <span class="hiking-detail">6 Days</span>
+                                <span class="hiking-detail">KES 33,300</span>
+                                <span class="hiking-detail">Difficulty: Moderate</span>
+                            </div>
+                            <div class="hiking-actions">
+                                <button class="btn book-now" data-hiking="tropical-jungle">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div class="page" id="contact">
+        <section>
+            <div class="container">
+                <div class="section-title">
+                    <h2>Plan Your Adventure</h2>
+                    <p>Get in touch with us to customize your perfect wildlife safari or hiking experience</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Location</h4>
+                                    <p>Murang'a Town,Opposite Crater Ventures</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Phone</h4>
+                                    <p>+254 796 88 55 19</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>muriithiadventures@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="mailto:adventures@wildlifesafaris.com" class="whatsapp-btn">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                        <div class="opening-hours">
+                            <h3>Operating Hours</h3>
+                            <ul class="hours-list">
+                                <li>
+                                    <span>Monday - Friday</span>
+                                    <span>9:00 AM - 6:00 PM</span>
+                                </li>
+                                <li>
+                                    <span>Saturday - Sunday</span>
+                                    <span>10:00 AM - 4:00 PM</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeBookingModal">&times;</span>
+            <h3 id="bookingTitle">Book Your Adventure</h3>
+            <p id="bookingDescription">Fill out the form below to book your safari or hiking experience</p>
+            
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Where are you located?</label>
+                <input type="text" id="location" placeholder="City, Country" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="participants">Number of Participants</label>
+                <input type="number" id="participants" min="1" max="20" value="1" required>
+            </div>
+            
+            <div class="booking-summary" id="bookingSummary" style="display: none;">
+                <h4>Booking Summary</h4>
+                <p id="bookingDetails">Classic African Safari (7 Days)</p>
+                <p class="booking-total">Total: <span id="bookingTotal">From KES 200,500</span></p>
+            </div>
+            
+            <div class="whatsapp-redirect" id="whatsappRedirect" style="display: none;">
+                <i class="fab fa-whatsapp"></i>
+                <p>Redirecting to WhatsApp...</p>
+            </div>
+            
+            <button class="btn" id="completeBooking" style="width: 100%;">Complete Booking</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>FRED SAFARIS & HIKING</h3>
+                    <p>Your gateway to experiencing the wonders of nature through guided wildlife safaris and hiking adventures around the East Africa.</p>
+                    
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="gallery">Gallery</a></li>
+                        <li><a href="#" class="nav-link" data-page="safaris">Safaris</a></li>
+                        <li><a href="#" class="nav-link" data-page="hiking">Hiking</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Travel Tips</a></li>
+                        <li><a href="#">Packing List</a></li>
+                        <li><a href="#">Safety Guidelines</a></li>
+                        <li><a href="#">Conservation Efforts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> +254 796 88 55 19</p>
+                    <p><i class="fas fa-envelope"></i>muriithiadventures@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Murang'a Town,Kiharu,Kenya</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 FRED SAFARIS & HIKING. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page Navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            // Toggle mobile menu
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.innerHTML = navMenu.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Page switching
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Remove active class from all pages and links
+                    pages.forEach(page => page.classList.remove('active'));
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // Add active class to target page and link
+                    document.getElementById(targetPage).classList.add('active');
+                    this.classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Book Now buttons
+            const bookNowButtons = document.querySelectorAll('.book-now');
+            const bookingModal = document.getElementById('bookingModal');
+            const closeBookingModal = document.getElementById('closeBookingModal');
+            const bookingTitle = document.getElementById('bookingTitle');
+            const bookingDescription = document.getElementById('bookingDescription');
+            const bookingSummary = document.getElementById('bookingSummary');
+            const bookingDetails = document.getElementById('bookingDetails');
+            const bookingTotal = document.getElementById('bookingTotal');
+            const completeBooking = document.getElementById('completeBooking');
+            const whatsappRedirect = document.getElementById('whatsappRedirect');
+            let currentAdventure = null;
+            
+            // Define adventure details
+            const adventures = {
+                'classic-african': {
+                    name: 'Classic African Safari',
+                    duration: '7 Days',
+                    price: 'KES 285,000',
+                    groupSize: '6-12'
+                },
+                'mountain-trekking': {
+                    name: 'Mountain Trekking Safari',
+                    duration: '10 Days',
+                    price: 'KES 250,200',
+                    groupSize: '4-8'
+                },
+                'jungle-adventure': {
+                    name: 'Jungle Adventure Safari',
+                    duration: '14 Days',
+                    price: 'KES 300,000',
+                    groupSize: '6-10'
+                },
+                'marine-wildlife': {
+                    name: 'Marine Wildlife Safari',
+                    duration: '5 Days',
+                    price: 'KES 176,800',
+                    groupSize: '8-15'
+                },
+                'rocky-mountain': {
+                    name: 'Rocky Mountain Trail',
+                    duration: '5 Days',
+                    price: 'KES 10,200',
+                    difficulty: 'Moderate'
+                },
+                'coastal-cliffs': {
+                    name: 'Coastal Cliffs Hike',
+                    duration: '3 Days',
+                    price: 'KES 16,800',
+                    difficulty: 'Easy'
+                },
+                'volcanic-landscape': {
+                    name: 'Volcanic Landscape Trek',
+                    duration: '7 Days',
+                    price: 'KES 23,500',
+                    difficulty: 'Challenging'
+                },
+                'tropical-jungle': {
+                    name: 'Tropical Jungle Trek',
+                    duration: '6 Days',
+                    price: 'KES 33,300',
+                    difficulty: 'Moderate'
+                }
+            };
+            
+            bookNowButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    currentAdventure = this.getAttribute('data-safari') || this.getAttribute('data-hiking');
+                    const adventure = adventures[currentAdventure];
+                    
+                    bookingTitle.textContent = `Book ${adventure.name}`;
+                    bookingDescription.textContent = `Fill out the form below to book your ${adventure.name} experience`;
+                    
+                    // Update booking summary
+                    if (adventure.duration && adventure.price) {
+                        bookingDetails.textContent = `${adventure.name} (${adventure.duration})`;
+                        bookingTotal.textContent = `From ${adventure.price}`;
+                    } else if (adventure.duration) {
+                        bookingDetails.textContent = `${adventure.name} (${adventure.duration})`;
+                        bookingTotal.textContent = `From ${adventure.price}`;
+                    } else {
+                        bookingDetails.textContent = `${adventure.name}`;
+                        bookingTotal.textContent = `From ${adventure.price}`;
+                    }
+                    
+                    bookingSummary.style.display = 'block';
+                    whatsappRedirect.style.display = 'none';
+                    completeBooking.style.display = 'block';
+                    bookingModal.style.display = 'flex';
+                });
+            });
+            
+            // Close booking modal
+            closeBookingModal.addEventListener('click', function() {
+                bookingModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === bookingModal) {
+                    bookingModal.style.display = 'none';
+                }
+            });
+            
+            // Complete booking
+            completeBooking.addEventListener('click', function() {
+                // Get form values
+                const fullName = document.getElementById('fullName').value;
+                const location = document.getElementById('location').value;
+                const startDate = document.getElementById('startDate').value;
+                const endDate = document.getElementById('endDate').value;
+                const participants = document.getElementById('participants').value;
+                
+                // Validate form
+                if (!fullName || !location || !startDate || !endDate) {
+                    alert('Please fill out all required fields');
+                    return;
+                }
+                
+                // Show redirect message
+                completeBooking.style.display = 'none';
+                whatsappRedirect.style.display = 'block';
+                
+                // Create WhatsApp message with booking details
+                const adventure = adventures[currentAdventure];
+                const message = `Hello! I'd like to book ${adventure.name} from ${startDate} to ${endDate} for ${participants} participant(s). My name is ${fullName} and I'm located in ${location}. Please confirm my booking.`;
+                const whatsappUrl = `https://wa.me/254796885519?text=${encodeURIComponent(message)}`;
+                
+                // Redirect to WhatsApp after a short delay
+                setTimeout(() => {
+                    window.location.href = whatsappUrl;
+                }, 1500);
+            });
+            
+            // Sticky header on scroll
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
