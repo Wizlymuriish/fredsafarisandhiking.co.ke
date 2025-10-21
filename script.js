@@ -1,4 +1,4 @@
-// Paste all JavaScript from the <script> tag here
+
 document.addEventListener('DOMContentLoaded', function() {
     // Page Navigation
     const navLinks = document.querySelectorAll('.nav-link');
@@ -102,4 +102,5 @@ document.addEventListener('DOMContentLoaded', function() {
             ? '0 5px 20px rgba(0, 0, 0, 0.1)' 
             : '0 2px 10px rgba(0, 0, 0, 0.05)';
     });
+
 });
